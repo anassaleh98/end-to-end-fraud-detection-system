@@ -42,16 +42,17 @@ end-to-end-fraud-detection-system/
 
 ##  Features  
 ✅ Fraud detection using **stacking ensemble** (RandomForest + XGBoost + CatBoost with Logistic Regression meta-learner)  
-✅ **Feature engineering**
+✅ **Feature engineering**                                                                                   
 ✅ **Class imbalance handling** with multiple strategies:  
    - Oversampling (SMOT)  
    - Undersampling (Random undersampling)  
    - Hybrid Over+Under sampling approaches
 
 ✅ **Hyperparameter tuning** using **GridSearchCV** for optimal model selection  
-✅ **Interactive Flask Web App** with single prediction and batch CSV upload  
+✅ **Confusion Matrix, ROC Curve, Precision, Recall, F1-score reports** saved in `outputs/`     
+✅ **Interactive Flask Web App** with single prediction and batch CSV upload             
 ✅ **Visualization dashboards** for fraud vs legitimate transactions  
-✅ **Confusion Matrix, ROC Curve, Precision, Recall, F1-score reports** saved in `outputs/`  
+  
 
 
 ---
