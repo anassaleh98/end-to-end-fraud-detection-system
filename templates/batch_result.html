@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Batch Fraud Detection Results</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 20px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    .table-container {
+      margin-top: 20px;
+      overflow-x: auto;
+    }
+    table.data, table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    table.data th, table.data td, table th, table td {
+      border: 1px solid #ddd;
+      padding: 6px 10px;
+      text-align: center;
+    }
+    table.data th, table th {
+      background-color: #f4f4f4;
+    }
+    /* Fraud table heading only */
+    .fraud-heading {
+      color: #c0392b;  /* deep red */
+      font-weight: bold;
+    }
+    .chart {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .download {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .download a {
+      display: inline-block;
+      background: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+    .download a:hover {
+      background: #0056b3;
+    }
+    .pagination {
+      margin-top: 15px;
+      text-align: center;
+    }
+    .pagination a {
+      display: inline-block;
+      margin: 0 5px;
+      padding: 6px 12px;
+      background: #007bff;
+      color: white;
+      border-radius: 4px;
+      text-decoration: none;
+    }
+    .pagination a:hover {
+      background: #0056b3;
+    }
+    .pagination span {
+      margin: 0 8px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Batch Fraud Detection Results</h2>
+
+    <!-- Fraud transactions table -->
+    <div class="table-container">
+      <h3 class="fraud-heading">All Fraud Transactions (10 per page)</h3>
+      {{ fraud_table_html | safe }}
+
+      <div class="pagination">
+        {% if fraud_page > 1 %}
+          <a href="{{ url_for('batch_results', fraud_page=fraud_page-1, page=current_page, chart_filename=request.args.get('chart_filename')) }}">⬅ Prev</a>
+        {% endif %}
+        <span>Page {{ fraud_page }} of {{ fraud_total_pages }}</span>
+        {% if fraud_page < fraud_total_pages %}
+          <a href="{{ url_for('batch_results', fraud_page=fraud_page+1, page=current_page, chart_filename=request.args.get('chart_filename')) }}">Next ➡</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Paginated transactions table -->
+    <div class="table-container">
+      <h3>All Transactions (fraud rows highlighted, 10 per page)</h3>
+      {{ table_html | safe }}
+
+      <div class="pagination">
+        {% if current_page > 1 %}
+          <a href="{{ url_for('batch_results', page=current_page-1, fraud_page=fraud_page, chart_filename=request.args.get('chart_filename')) }}">⬅ Prev</a>
+        {% endif %}
+        <span>Page {{ current_page }} of {{ total_pages }}</span>
+        {% if current_page < total_pages %}
+          <a href="{{ url_for('batch_results', page=current_page+1, fraud_page=fraud_page, chart_filename=request.args.get('chart_filename')) }}">Next ➡</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="chart">
+      <h3>Fraud vs Legitimate Transactions</h3>
+      {% if chart %}
+        <img src="{{ chart }}" alt="Fraud vs Legitimate Chart" width="600">
+      {% else %}
+        <p>No chart available.</p>
+      {% endif %}
+    </div>
+
+
+    <!-- Download -->
+    <div class="download">
+      <a href="{{ download_link }}">⬇ Download Full Results (CSV)</a>
+    </div>
+  </div>
+</body>
+</html>

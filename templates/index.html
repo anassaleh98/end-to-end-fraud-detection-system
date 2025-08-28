@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fraud Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        input {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            background: #f8f9fa;
+        }
+        input:focus { border-color: #667eea; outline: none; }
+        .submit-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 15px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .fraud { background: #ff4757; color: white; }
+        .legitimate { background: #2ed573; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Credit Card Fraud Detection</h1>
+
+        <form method="post" action="/predict">
+            <div class="form-grid">
+                <input type="number" step="any" name="Time" placeholder="Time" required>
+                {% for i in range(1, 29) %}
+                    <input type="number" step="any" name="V{{i}}" placeholder="V{{i}}" required>
+                {% endfor %}
+                <input type="number" step="any" name="Amount" placeholder="Amount" required>
+            </div>
+            <button type="submit" class="submit-btn">Predict</button>
+        </form>
+
+        <!-- Batch CSV upload -->
+        <form method="post" action="/upload" enctype="multipart/form-data" style="text-align:center;">
+            <input type="file" name="file" accept=".csv" required>
+            <button type="submit" class="submit-btn">Upload CSV</button>
+        </form>
+
+        {% if result %}
+        <div class="result {{ 'fraud' if result == 'FRAUD' else 'legitimate' }}">
+            {% if result == "FRAUD" %}
+                ⚠️ {{ result }} <br> Fraud likelihood: {{ confidence }}%
+            {% else %}
+                ✅ {{ result }} <br> Fraud likelihood: {{ confidence }}%
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="result fraud">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>
+

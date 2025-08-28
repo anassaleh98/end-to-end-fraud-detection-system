@@ -1,0 +1,87 @@
+-------- RandomForest with oversampling --------
+train :
+
+Precision: 0.9967858812529219
+Recall: 1.0
+F1 Score: 0.9983903538294946
+
+Confusion Matrix:
+ [[170524     55]
+ [     0  17057]]
+
+val :
+
+Precision: 0.8020833333333334
+Recall: 0.8555555555555555
+F1 Score: 0.8279569892473119
+
+Confusion Matrix:
+ [[56851    19]
+ [   13    77]]
+
+-------- xgboost --------
+
+train :
+
+Precision: 0.993485342019544
+Recall: 1.0
+F1 Score: 0.9967320261437909
+
+Confusion Matrix:
+ [[170577      2]
+ [     0    305]]
+
+val :
+
+Precision: 0.8444444444444444
+Recall: 0.8444444444444444
+F1 Score: 0.8444444444444444
+
+Confusion Matrix:
+ [[56856    14]
+ [   14    76]]
+
+-------- CatBoost --------
+
+train :
+
+Precision: 0.7984293193717278
+Recall: 1.0
+F1 Score: 0.8879184861717613
+
+Confusion Matrix:
+ [[170502     77]
+ [     0    305]]
+
+val :
+
+Precision: 0.8
+Recall: 0.8444444444444444
+F1 Score: 0.8216216216216217
+
+Confusion Matrix:
+ [[56851    19]
+ [   14    76]]
+ 
+-------- stacking model --------
+
+train_val :
+
+Precision: 0.9825
+Recall: 1.0
+F1 Score: 0.9912
+
+Confusion Matrix:
+ [[227442      7]
+ [     0    395]]
+
+---- Final Test Evaluation with stacking model ----
+
+Precision: 0.8269230769230769
+Recall: 0.8865979381443299
+F1 Score: 0.8557213930348259
+
+Confusion Matrix:
+ [[56845    18]
+ [   11    86]]
+ 

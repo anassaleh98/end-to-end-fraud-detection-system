@@ -1,0 +1,10 @@
+flask
+werkzeug
+pandas
+numpy
+scikit-learn
+xgboost
+catboost
+imbalanced-learn
+matplotlib
+joblib
