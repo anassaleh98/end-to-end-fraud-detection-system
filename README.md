@@ -36,7 +36,7 @@ It includes:
 - Fraud vs Legitimate chart  
 - Paginated results  
 
-https://github.com/user-attachments/assets/6c60c93d-c3a1-40c0-8245-6ece541af338
+https://github.com/user-attachments/assets/0794c621-fde0-4e32-951f-066aff0250e0
 
 
 ## 📂 Repository Structure  
