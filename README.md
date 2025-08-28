@@ -12,8 +12,6 @@ It includes:
 
 ---
 
----
-
 ##  Features  
 ✅ Fraud detection using **stacking ensemble** (RandomForest + XGBoost + CatBoost with Logistic Regression meta-learner)  
 ✅ **Feature engineering**                                                                                   
@@ -28,6 +26,18 @@ It includes:
 ✅ **Visualization dashboards** for fraud vs legitimate transactions 
 
 ---
+
+## 🖼️ Web Application Preview  
+
+### 🔹 Home Page (Single Prediction + CSV Upload)  
+
+### 🔹 Batch Results Page  
+- Fraud transactions highlighted  
+- Fraud vs Legitimate chart  
+- Paginated results  
+
+https://github.com/user-attachments/assets/05990264-d7eb-4733-bf12-29ef845e24c7
+
 
 ## 📂 Repository Structure  
 
@@ -98,14 +108,4 @@ python app.py
 Then open:  
 👉 http://127.0.0.1:5000/
 
----
 
-## 🖼️ Web Application Preview  
-
-### 🔹 Home Page (Single Prediction + CSV Upload)  
-<img src="dd3a3bb3-162f-47fe-bb80-7d67905b8459.png" width="700">
-
-### 🔹 Batch Results Page  
-- Fraud transactions highlighted  
-- Fraud vs Legitimate chart  
-- Paginated results  
